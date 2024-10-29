@@ -70,7 +70,7 @@ class CrashHandler {
 		#end
 
 		#if github
-			b.add('\nGitHub info:\n')
+			b.add('\nGitHub info:\n');
 			#if github.repo_url
 			b.add(' - Repository URL: ${Compiler.getDefine('github.repo_url')}\n');
 			#end

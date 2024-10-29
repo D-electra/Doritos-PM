@@ -2,6 +2,8 @@ import haxe.macro.Compiler;
 import haxe.macro.Context;
 import haxe.macro.Expr.Field;
 
+using StringTools;
+
 class GitHubMacro {
 	public static macro function run():Array<Field> {
 		if (sys.FileSystem.exists('.git') && sys.FileSystem.isDirectory('.git')) {
@@ -15,7 +17,7 @@ class GitHubMacro {
 
 	private static inline function _getRepoUrl():String {
 		var git = new sys.io.Process('git', ['config', '--get', 'remote.origin.url']);
-		var result = Std.string(git.stdout.readAll());
+		var result = Std.string(git.stdout.readAll()).trim();
 		git.exitCode();
 		return result;
 	}
